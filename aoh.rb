@@ -1,4 +1,4 @@
-#	[Written By: Vivex - eigenfruit@gmail.com] #
+#	[Written By: ZeroPivot - aritywolf@outlook.com] #
 
 require 'fileutils'
 #TODO:
