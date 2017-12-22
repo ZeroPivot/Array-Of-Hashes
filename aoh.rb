@@ -1,8 +1,13 @@
-#	[Written By: ZeroPivot - aritywolf@outlook.com] #
+#	[Written By: Vivex - eigenfruit@gmail.com] #
 
 require 'fileutils'
+# last updated: 2017-12-13
+
 #TODO:
 =begin
+	-2017-Dec-13
+	* Implemented reverse_add(hash) -- appends to the front of @collection instead of adding to the back as usual.
+
 	-24-Sep-14 : most of the day
 	* Implemented File saving methods: [aoh_object].save!(file_location: "test", aoh: nil)
 	* As a side note: you may have to modify the get_id instance method to return a certain string (or false)
@@ -43,6 +48,33 @@ class AOH #Array-of-hashes container
 		
 	end
 
+
+	def reverse_add(hash)
+		if hash.is_a? Hash
+			@collection.unshift(hash)
+		else
+			raise "#{hash.inspect} is NOT a Hash..."
+		end
+	end
+
+
+	def collection_get
+		@collection
+	end
+
+	def first
+		@collection[0]
+	end
+
+	def last
+		@collection.last
+	end
+
+	def max		
+		@collection.size-1
+	end
+
+
 	def clear_then_save
 
 	end
@@ -54,6 +86,7 @@ class AOH #Array-of-hashes container
 		elsif id==nil
 			return map {|i| i}
 		else
+			return nil if id < 0 or id > @collection.size
 			return @collection[id.to_i]
 		end
 
@@ -74,6 +107,8 @@ class AOH #Array-of-hashes container
 
 	end
 
+	
+
 	def rem_by_id(id)
 		raise "id is not an integer" if !id.is_a? Integer
 		@collection.delete_at(id)
@@ -81,7 +116,7 @@ class AOH #Array-of-hashes container
 
 
 	def each_with_index(&block)
-		raise "block not given in each_with_index(#&block)" if !block_given?
+		raise "block not given in each_with_index(&block)" if !block_given?
 		#@collection.each_with_index.map {|a_hash, index| yield [a_hash, index]}	#now figure out a nice way to add to the arguments...
 		@collection.each_with_index.map {|a_hash, index| yield [a_hash, index]}	#now figure out a nice way to add to the arguments...		
 	end
@@ -103,7 +138,7 @@ class AOH #Array-of-hashes container
 			hash.each_pair do |id, data|
 				puts "Loc[#{loc}]: #{id.inspect} => #{data.inspect}" #you could put a yield here one of these days
 			end
-			loc += i1
+			loc += 1
 			puts "\n\n"
 		end
 		
