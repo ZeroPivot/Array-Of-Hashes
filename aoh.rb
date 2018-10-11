@@ -1,7 +1,7 @@
 #	[Written By: Vivex - eigenfruit@gmail.com] #
 
 require 'fileutils'
-# last updated: 2017-12-13
+# last updated: 2018-10-10
 
 #TODO:
 =begin
@@ -72,6 +72,18 @@ class AOH #Array-of-hashes container
 
 	def max		
 		@collection.size-1
+	end
+
+	def swap_id(id_a:, id_b:)
+		if (id_a.is_a?(Integer) && id_b.is_a?(Integer) && (self.get_id(id_a) != nil || self.get_id(id_b) != nil))
+			@collection[id_a],@collection[id_b] = @collection[id_b], @collection[id_a]
+		else
+			return false
+		end
+
+		return true
+
+
 	end
 
 
