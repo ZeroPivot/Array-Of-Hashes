@@ -39,8 +39,9 @@ DB.set_id(integer) do |config|
 # Add to the database:
  
  Append to the end of the array all hash data speficied in args
- `DB.add(data_hash1: "data", ..., data_hashN: "dataN", data_hashInt: 42)` 
- `DB.reverse_add(...) #=> identical to above, but sets id to be the first in the array`
+ ```DB.add(data_hash1: "data", ..., data_hashN: "dataN", data_hashInt: 42)
+ DB.reverse_add(...) #=> identical to above, but sets id to be the first in the array```
+ 
  Save the database
  `DB.save!(file_location: "/your/file/here.db")`
 
