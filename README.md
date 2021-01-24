@@ -30,9 +30,9 @@ Returns the hash data of the integer id array indice
 Set an existing ID in DB with some data
 ```
 DB.set_id(integer) do |config|
-  data[:some_hash] = "some string"
+  config[:some_hash] = "some string"
   # ...
-  data[:some_other_hash] = 42
+  config[:some_other_hash] = 42
  end
  
 ```
