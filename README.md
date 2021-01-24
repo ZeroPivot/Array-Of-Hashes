@@ -47,6 +47,8 @@ DB.set_id(integer) do |config|
  Save the database
  `DB.save!(file_location: "/your/file/here.db")`
 
-
 And to remove an indice:
 `DB.rem_by_id(integer_id)`
+
+Get an id in the database, or returns nil
+`data_hash = DB.get_id(id)`
